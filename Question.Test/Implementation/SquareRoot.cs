@@ -1,5 +1,5 @@
-﻿using System.Xml.Linq;
-using Question.Test.Interface;
+﻿using Question.Test.Interface;
+using System.Xml.Linq;
 
 namespace Question.Test.Implementation
 {
@@ -19,7 +19,16 @@ namespace Question.Test.Implementation
         /// <returns>The XML with inserted square roots. See output_example.xml as example output.</returns>
         public XDocument AddSquareRootToXml(XDocument xDocument)
         {
-            throw new NotImplementedException(nameof(this.AddSquareRootToXml));
+            var output = new XDocument(xDocument);
+            var elements = XmlHelper.GetDescendants(output, XmlTags.Number);
+            foreach (var element in elements)
+            {
+                Value = Convert.ToInt32(XmlHelper.GetElementValue(element, XmlTags.Value));
+                decimal approximateValue = Convert.ToDecimal(XmlHelper.GetElementValue(element, XmlTags.Approximate));
+                element.Add(XmlHelper.CreateElement(XmlTags.SquareRoot, CalculateSquareRoot(approximateValue)));
+            }
+
+            return output;
         }
 
         /// <summary>
@@ -44,7 +53,20 @@ namespace Question.Test.Implementation
         /// <returns>Square root value of Value property.</returns>
         public decimal CalculateSquareRoot(decimal approximateValue)
         {
-            throw new NotImplementedException(nameof(this.CalculateSquareRoot));
+            decimal result;
+            result = SquareRootFormula(approximateValue);
+
+            do
+            {
+            } while (result != (result = SquareRootFormula(result)));
+
+            return Math.Round(result, 13);
+        }
+
+        private decimal SquareRootFormula(decimal approximateValue)
+        {
+            var newApproximateValue = Value / approximateValue;
+            return (newApproximateValue + approximateValue) / 2;
         }
     }
 }

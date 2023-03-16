@@ -1,5 +1,6 @@
-﻿using System.Xml.Linq;
-using Question.Test.Interface;
+﻿using Question.Test.Interface;
+using System.Reflection;
+using System.Xml.Linq;
 
 namespace Question.Test.Implementation
 {
@@ -14,7 +15,8 @@ namespace Question.Test.Implementation
         /// <returns>The XML XDocument.</returns>
         public XDocument GetXml(string xmlName)
         {
-            throw new NotImplementedException(nameof(this.GetXml));
+            string path = $@"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\Xml\{xmlName}.xml";
+            return XDocument.Load(path);
         }
     }
 }

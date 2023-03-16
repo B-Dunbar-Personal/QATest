@@ -1,5 +1,6 @@
-using System.Xml.Linq;
+using Question.Test.Implementation;
 using Question.Test.Interface;
+using System.Xml.Linq;
 
 namespace Question.Test
 {
@@ -15,9 +16,8 @@ namespace Question.Test
         public UnitTestQuestions()
         {
             ServiceCollection services = new();
-
-            // add your services here.
-            
+            services.AddTransient<IReadXml, ReadXml>();
+            services.AddTransient<ISquareRoot, SquareRoot>();
             _serviceProvider = services.BuildServiceProvider();
         }
 
@@ -58,15 +58,28 @@ namespace Question.Test
         [Fact]
         public void TestCreateSquareRootXml()
         {
+            string xmlFileName = "input";
             var xmlService = _serviceProvider.GetService<IReadXml>();
 
             var squareRootService = _serviceProvider.GetService<ISquareRoot>();
 
-            XDocument xml = xmlService.GetXml("input");
+            XDocument xml = xmlService.GetXml(xmlFileName);
 
             XDocument newXml = squareRootService.AddSquareRootToXml(xml);
-            
-            // Write you own verification for the XML.
+
+            Assert.NotSame(xml, newXml);
+            foreach (var descendants in XmlHelper.GetDescendants(newXml, XmlTags.Number))
+            {
+                var elements = descendants.Elements().ToList();
+
+                Assert.True(elements.Count() == 3);
+                Assert.Equal(elements[0].Name, XmlTags.Value);
+                Assert.Equal(elements[1].Name, XmlTags.Approximate);
+                Assert.Equal(elements[2].Name, XmlTags.SquareRoot);
+                Assert.NotNull(elements[2].Value);
+                Assert.NotEmpty(elements[2].Value);
+
+            }
         }
     }
 }
