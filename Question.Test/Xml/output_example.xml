@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Numbers>
+	<Number>
+		<Value>89</Value>
+		<Approximate>4</Approximate>
+		<SquareRoot>9.4339811320566</SquareRoot>
+	</Number>
+	<Number>
+		<Value>56</Value>
+		<Approximate>12</Approximate>
+		<SquareRoot>7.4833147735479</SquareRoot>
+	</Number>
+	<Number>
+		<Value>900</Value>
+		<Approximate>10</Approximate>
+		<SquareRoot>30.0000000000000</SquareRoot>
+	</Number>
+	<Number>
+		<Value>3400</Value>
+		<Approximate>20</Approximate>
+		<SquareRoot>58.3095189484530</SquareRoot>
+	</Number>
+	<Number>
+		<Value>34</Value>
+		<Approximate>8</Approximate>
+		<SquareRoot>5.8309518948453</SquareRoot>
+	</Number>
+</Numbers>

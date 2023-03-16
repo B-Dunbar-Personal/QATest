@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Numbers>
+	<Number>
+		<Value>89</Value>
+		<Approximate>4</Approximate>
+	</Number>
+	<Number>
+		<Value>56</Value>
+		<Approximate>12</Approximate>
+	</Number>
+	<Number>
+		<Value>900</Value>
+		<Approximate>10</Approximate>
+	</Number>
+	<Number>
+		<Value>3400</Value>
+		<Approximate>20</Approximate>
+	</Number>
+	<Number>
+		<Value>34</Value>
+		<Approximate>8</Approximate>
+	</Number>
+</Numbers>
